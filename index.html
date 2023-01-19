@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+	<meta charset="utf-8">
+	<title>D&D Character Creator</title>
+	<meta name="author" content="Alex Heywood">
+	<meta name="description" content="A D&D character creation tool.">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oldenburg&display=swap" rel="stylesheet">
+	<link rel="icon" type="image/x-icon" href=""/>
+    
+</head>
+<style>
+    .dice {
+        width: 20%;
+        height: 20%
+        content-align: center;
+    }
+    
+    body {
+        font-family: 'Oldenburg', cursive;
+    }
+    
+    img:hover {
+  animation: shake 0.5s;
+  animation-iteration-count: 3s;
+}
+    #result {
+        
+        font-size:30px;
+        width: auto;
+        height: auto;
+        padding: 5px;
+        text-align: center;
+        color: white;
+        border-collapse: collapse;
+        border-radius: 1px;
+        
+    }
+    table, td, th {
+  border: 1px solid;
+        background-color: #64AA6D;
+        padding: 3px;
+        column-gap: 3px;
+        grid-row-gap: 10px;
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+    
+@media screen and (max-width: 800px) {
+  .dice {
+    width: 70%; /* The width is 100%, when the viewport is 800px or smaller */
+  }
+    
+</style>
+<body>
+	<header>
+    <h1>D&amp;D Character Creation</h1>
+    </header>
+	<main>
+    
+    <p>Click on the dice below to roll your stat numbers:</p>
+    <img onclick="rollDice()" id="die" class="dice" src="https://lezebre.lu/images/detailed/79/45388-Sticker_deco_auto_Cube.png"/>
+    <p>You have rolled: <div id="result"></div></p>
+   
+    </table>
+    </main>
+	<footer></footer>
+	<script type="text/javascript" src=""></script>
+</body>
+
+    
+<script language="javascript" type="text/javascript">
+//javascript here please
+document.getElementById("die").addEventListener("click", rollDice);
+
+function rollDice() {
+
+let count = 0;
+    
+const stat_results = [];
+    
+let onlyOnce = 0;
+    
+while (stat_results.length < 6) {
+
+//create four variables with random numbers between 1 - 6
+const roll = Math.floor(Math.random() * 6) + 1;
+const roll2 = Math.floor(Math.random() * 6) + 1;
+const roll3 = Math.floor(Math.random() * 6) + 1;
+const roll4 = Math.floor(Math.random() * 6) + 1;
+
+//store the four random integers in a list
+    
+const dice_result = [];
+dice_result.push(roll, roll2, roll3, roll4);
+
+console.log(dice_result);
+
+//sort the list 
+dice_result.sort();
+//remove the lowest integer from list which is first index
+dice_result.shift();
+console.log(dice_result);
+
+//create three new variables with the list integers
+const new_roll1 = parseInt(dice_result[0], 10);
+const new_roll2 = parseInt(dice_result[1], 10);
+const new_roll3 = parseInt(dice_result[2], 10);
+
+
+console.log(new_roll1, new_roll2, new_roll3);
+
+//add the three integers to create one stat roll
+stat_one = new_roll1 + new_roll2 + new_roll3;
+
+console.log(stat_one);
+
+//assign the stat role to a new list
+
+stat_results.push(stat_one);
+    
+console.log(stat_results);
+
+document.getElementById("result").innerHTML =  "<table><th>"+stat_results[0]+"</th><th>"+stat_results[1]+"</th><th>"+stat_results[2]+"</th><th>"+stat_results[3]+"</th><th>"+stat_results[4]+"</th><th>"+stat_results[5]+"</th>";
+}    
+
+}
+
+
+
+</script>
+
+</html>
